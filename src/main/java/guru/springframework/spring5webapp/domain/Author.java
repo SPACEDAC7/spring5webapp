@@ -58,4 +58,32 @@ public class Author {
     public void setBooks(Set<Book> books) {
         this.books = books;
     }
+
+
+    // NOTE: Basamos estos dos métodos en el id porque es nuestra caracteristica principal y la que queremos que
+    // hibernetes tenga en cuenta
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        return id != null ? id.equals(author.id) : author.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
+    }
 }
